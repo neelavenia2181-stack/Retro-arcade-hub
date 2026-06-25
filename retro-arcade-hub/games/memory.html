@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Match - Retro Arcade Hub</title>
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/games.css">
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <div class="page-wrapper">
+    <div class="arcade-container">
+      
+      <!-- Header -->
+      <div class="arcade-header">
+        <div class="arcade-title-box">
+          <span style="font-size:2rem;">🧠</span>
+          <div class="arcade-title">MEMORY MATCH</div>
+        </div>
+        <a href="../index.html" class="arcade-back-btn">⬅️ LEAVE CABINET</a>
+      </div>
+      <div class="arcade-screen" style="min-width: 500px; min-height: 440px; padding: 10px;">
+        
+        <div class="arcade-hud">
+          <div class="hud-item">TIME: <span id="hud-timer" class="hud-value">0.0s</span></div>
+          <div class="hud-item">MOVES: <span id="hud-moves" class="hud-value">0</span></div>
+          <div class="hud-item">BEST TIME: <span id="hud-best" class="hud-value">N/A</span></div>
+        </div>
+        <div id="start-overlay" class="screen-overlay">
+          <div class="overlay-title">MEMORY GENIUS</div>
+          <div class="overlay-desc">Flip card tiles to find identical matching emoji sets in the shortest time!</div>
+          
+          <div style="display:flex; gap:10px; flex-direction:column; align-items:center; margin-bottom:20px;">
+            <label class="form-label" style="color:var(--text-secondary);">Grid Size / Difficulty</label>
+            <select id="memory-difficulty-select" class="form-input form-select" style="width:180px; text-align:center;">
+              <option value="easy">EASY (4x4 Grid)</option>
+              <option value="medium" selected>MEDIUM (6x4 Grid)</option>
+              <option value="hard">HARD (6x6 Grid)</option>
+            </select>
+          </div>
+          
+          <button id="start-btn" class="btn btn-primary">START CHALLENGE</button>
+        </div>
+
+        <div id="memory-board" class="memory-board medium">
+        </div>
+
+        <div id="gameover-overlay" class="screen-overlay hidden">
+          <div class="overlay-title" style="color:var(--accent-green); text-shadow:var(--glow-green);">COMPLETED!</div>
+          <div class="overlay-desc">
+            Finished in <span id="go-time" class="text-accent">0</span> seconds with <span id="go-moves" class="text-accent">0</span> moves.
+          </div>
+          <button id="restart-btn" class="btn btn-primary">PLAY AGAIN</button>
+        </div>
+
+      </div>
+
+      <div class="arcade-console">
+        <button id="console-restart-btn" class="btn btn-secondary">🔄 RESET GRID</button>
+        <div style="font-family:'Orbitron', monospace; font-size:0.75rem; color:var(--text-muted);">
+          CLICK TILES TO FLIP & MATCH
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../games-js/memory.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pong Arena - Retro Arcade Hub</title>
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/games.css">
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <div class="page-wrapper">
+    <div class="arcade-container">
+            <div class="arcade-header">
+        <div class="arcade-title-box">
+          <span style="font-size:2rem;">🏓</span>
+          <div class="arcade-title">PONG ARENA</div>
+        </div>
+        <a href="../index.html" class="arcade-back-btn">⬅️ LEAVE CABINET</a>
+      </div>
+
+      <div class="arcade-screen" style="width: 640px; height: 440px;">
+                <div class="arcade-hud">
+          <div class="hud-item">YOU: <span id="hud-score-player" class="hud-value">0</span></div>
+          <div class="hud-item">STREAK: <span id="hud-streak" class="hud-value">0</span></div>
+          <div class="hud-item">OPPONENT: <span id="hud-score-ai" class="hud-value">0</span></div>
+        </div>
+        <canvas id="game-canvas" width="640" height="380" class="game-canvas"></canvas>
+
+        <div id="start-overlay" class="screen-overlay">
+          <div class="overlay-title">PRESS SPACE</div>
+          <div class="overlay-desc">Use Up/Down Arrow keys or W/S to slide paddle. Match points to 5 wins. Avoid letting the ball pass!</div>
+          <div style="display:flex; gap:10px; flex-direction:column; align-items:center;">
+            <label class="form-label" style="color:var(--text-secondary);">Select Difficulty</label>
+            <select id="pong-difficulty-select" class="form-input form-select" style="width:140px; text-align:center;">
+              <option value="easy">EASY</option>
+              <option value="medium" selected>MEDIUM</option>
+              <option value="hard">HARD</option>
+            </select>
+          </div>
+          <button id="start-btn" class="btn btn-primary" style="margin-top:20px;">INSERT COIN & START</button>
+        </div>
+
+        <div id="pause-overlay" class="screen-overlay hidden">
+          <div class="overlay-title" style="color:var(--accent3); text-shadow:0 0 10px var(--accent3);">PAUSED</div>
+          <div class="overlay-desc">Press ESC to Resume.</div>
+          <button id="resume-btn" class="btn btn-primary">RESUME</button>
+        </div>
+
+        <div id="gameover-overlay" class="screen-overlay hidden">
+          <div id="gameover-title" class="overlay-title">VICTORY</div>
+          <div class="overlay-desc">Match Result: <span id="go-score" class="text-accent">0</span></div>
+          <button id="restart-btn" class="btn btn-primary">PLAY AGAIN</button>
+        </div>
+
+      </div>
+
+      <div class="arcade-console">
+        <div class="console-controls">
+          <button id="console-pause-btn" class="btn btn-secondary">⏸️ PAUSE (ESC)</button>
+        </div>
+        <div style="font-family:'Orbitron', monospace; font-size:0.75rem; color:var(--text-muted);">
+          KEYBOARD CONTROLS: W/S OR UP/DOWN ARROWS
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../games-js/pong.js"></script>
+</body>
+</html>

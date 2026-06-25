@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe - Retro Arcade Hub</title>
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/games.css">
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <div class="page-wrapper">
+    <div class="arcade-container">
+            <div class="arcade-header">
+        <div class="arcade-title-box">
+          <span style="font-size:2rem;">❌</span>
+          <div class="arcade-title">TIC TAC TOE</div>
+        </div>
+        <a href="../index.html" class="arcade-back-btn">⬅️ LEAVE CABINET</a>
+      </div>
+      <div class="arcade-screen" style="width: 480px; height: 440px;">
+                <div class="arcade-hud">
+          <div class="hud-item">X (YOU): <span id="hud-score-wins" class="hud-value">0</span></div>
+          <div class="hud-item">DRAWS: <span id="hud-score-draws" class="hud-value">0</span></div>
+          <div class="hud-item">O (OPP): <span id="hud-score-losses" class="hud-value">0</span></div>
+        </div>
+        <div id="start-overlay" class="screen-overlay">
+          <div class="overlay-title">TIC TAC TOE</div>
+          <div class="overlay-desc">Align three symbols horizontally, vertically or diagonally to win.</div>
+          
+          <div style="display:flex; gap:15px; margin-bottom:20px; flex-direction:column; align-items:center;">
+            <div>
+              <label class="form-label" style="color:var(--text-secondary);">Select Mode</label>
+              <select id="ttt-mode-select" class="form-input form-select" style="width:180px; text-align:center;">
+                <option value="pvc">Player vs AI</option>
+                <option value="pvp">Local 2-Player (PvP)</option>
+              </select>
+            </div>
+            
+            <div id="ttt-difficulty-wrap">
+              <label class="form-label" style="color:var(--text-secondary);">AI Difficulty</label>
+              <select id="ttt-difficulty-select" class="form-input form-select" style="width:180px; text-align:center;">
+                <option value="easy">EASY (Random)</option>
+                <option value="medium" selected>MEDIUM (Smart)</option>
+                <option value="hard">HARD (Invincible)</option>
+              </select>
+            </div>
+          </div>
+          
+          <button id="start-btn" class="btn btn-primary">START GAME</button>
+        </div>
+        <div class="ttt-grid" id="ttt-board-container">
+          <div class="ttt-cell" data-index="0"></div>
+          <div class="ttt-cell" data-index="1"></div>
+          <div class="ttt-cell" data-index="2"></div>
+          <div class="ttt-cell" data-index="3"></div>
+          <div class="ttt-cell" data-index="4"></div>
+          <div class="ttt-cell" data-index="5"></div>
+          <div class="ttt-cell" data-index="6"></div>
+          <div class="ttt-cell" data-index="7"></div>
+          <div class="ttt-cell" data-index="8"></div>
+        </div>
+        <div id="gameover-overlay" class="screen-overlay hidden">
+          <div id="gameover-title" class="overlay-title" style="font-size:1.5rem;">X WINS!</div>
+          <div class="overlay-desc" id="gameover-desc">Good game!</div>
+          <button id="restart-btn" class="btn btn-primary">PLAY AGAIN</button>
+        </div>
+
+      </div>
+
+      <div class="arcade-console">
+        <button id="console-reset-btn" class="btn btn-secondary">🔄 RESTART MATCH</button>
+        <div style="font-family:'Orbitron', monospace; font-size:0.75rem; color:var(--text-muted);" id="turn-indicator">
+          YOUR TURN (X)
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../games-js/tictactoe.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPS Standoff - Retro Arcade Hub</title>
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/games.css">
+</head>
+<body>
+  <canvas id="stars-canvas"></canvas>
+
+  <div class="page-wrapper">
+    <div class="arcade-container">
+            <div class="arcade-header">
+        <div class="arcade-title-box">
+          <span style="font-size:2rem;">✂️</span>
+          <div class="arcade-title">RPS STANDOFF</div>
+        </div>
+        <a href="../index.html" class="arcade-back-btn">⬅️ LEAVE CABINET</a>
+      </div>
+      <div class="arcade-screen" style="width: 520px; height: 420px; padding: 20px;">
+        
+        <div class="arcade-hud">
+          <div class="hud-item">WINS: <span id="hud-score-wins" class="hud-value">0</span></div>
+          <div class="hud-item">STREAK: <span id="hud-streak" class="hud-value">0</span></div>
+          <div class="hud-item">LOSSES: <span id="hud-score-losses" class="hud-value">0</span></div>
+        </div>
+
+        <div class="rps-area">
+          <!-- Combat Arena -->
+          <div class="rps-arena">
+            <div class="rps-fighter" id="fighter-player">
+              <span class="rps-fighter-icon" id="fighter-player-icon">✊</span>
+              <span class="rps-fighter-label">YOU</span>
+            </div>
+            
+            <div class="rps-versus">VS</div>
+            
+            <div class="rps-fighter" id="fighter-cpu">
+              <span class="rps-fighter-icon" id="fighter-cpu-icon">✊</span>
+              <span class="rps-fighter-label">CPU</span>
+            </div>
+          </div>
+
+          <div class="rps-result-banner" id="result-banner">CHOOSE YOUR MOVE</div>
+
+          <div class="rps-options">
+            <button class="rps-btn" data-choice="rock">
+              <span class="rps-btn-icon">✊</span>
+              <span class="rps-btn-label">ROCK</span>
+            </button>
+            <button class="rps-btn" data-choice="paper">
+              <span class="rps-btn-icon">✋</span>
+              <span class="rps-btn-label">PAPER</span>
+            </button>
+            <button class="rps-btn" data-choice="scissors">
+              <span class="rps-btn-icon">✌️</span>
+              <span class="rps-btn-label">SCISSORS</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="arcade-console">
+        <button id="console-reset-btn" class="btn btn-secondary">🔄 RESET SCORES</button>
+        <div style="font-family:'Orbitron', monospace; font-size:0.75rem; color:var(--text-muted);">
+          BEAT CPU TO BUILD YOUR WINNING STREAK
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../games-js/rps.js"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro Arcade Hub - Pure Client-side Gaming</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/games.css">
+</head>
+<body>
+  <div id="loading-screen">
+    <div class="loading-title">INSERT COIN</div>
+    <div class="loading-bar-wrap">
+      <div class="loading-bar-fill"></div>
+    </div>
+    <div style="font-family:'Press Start 2P', monospace; font-size:0.6rem; color:var(--text-muted);">INITIALIZING ARCADE CABINET</div>
+  </div>
+  <canvas id="stars-canvas"></canvas>
+
+  <div class="page-wrapper">
+    <nav class="navbar">
+      <a href="#games-grid-section" class="nav-logo">
+        <span class="nav-logo-icon">🕹️</span>
+        <div class="nav-logo-text">
+          RETRO ARCADE
+          <span>PLAY WITHOUT LIMITS</span>
+        </div>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="#games-grid-section" class="active">🎮 Games</a></li>
+        <li><a href="#settings-page-section">⚙️ Settings</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <button id="profile-trigger" class="nav-btn" onclick="Profile.openModal()">👤 Profile</button>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-bg"></div>
+      <h1 class="hero-title glitch-text">RETRO ARCADE HUB</h1>
+      <p class="hero-subtitle">Play the classic retro-games without limits</p>
+      
+      <div class="hero-ticker">
+        <div class="ticker-item">
+          <span class="ticker-value" id="stats-games-played">0</span>
+          <span class="ticker-label">Games Played</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-value" id="stats-games-won" style="color:var(--accent-green); text-shadow:var(--glow-green);">0</span>
+          <span class="ticker-label">Total Wins</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-value" id="stats-total-score">0</span>
+          <span class="ticker-label">Total Score</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-value" id="stats-highest-score" style="color:var(--accent2); text-shadow:var(--glow-pink);">0</span>
+          <span class="ticker-label">High Score</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="main-content">
+                <div id="games-grid-section" class="page-section active">
+          <div class="section-header">
+            <span class="section-icon">🎮</span>
+            <h2>CHOOSE YOUR GAME</h2>
+            <div class="section-line"></div>
+          </div>
+          
+          <div class="games-grid">
+            <a href="games/snake.html" class="game-card" style="--card-accent: var(--accent); --card-accent-rgb: 0, 245, 255;">
+              <div class="game-card-banner">🐍</div>
+              <div class="game-card-body">
+                <div class="game-card-title">SNAKE</div>
+                <div class="game-card-desc">Control the pixel snake, eat food, grow longer and avoid crashing into walls or yourself!</div>
+                <div class="game-card-stats">
+                  <div class="game-card-stat">
+                    <span class="game-card-stat-value" id="card-stat-snake-high">0</span>
+                    <span class="game-card-stat-label">High Score</span>
+                  </div>
+                </div>
+                <div class="game-card-footer">
+                  <span class="btn-play">PLAY NOW 🕹️</span>
+                  <span class="game-badge badge-easy">Canvas</span>
+                </div>
+              </div>
+            </a>
+            <a href="games/pong.html" class="game-card" style="--card-accent: var(--accent2); --card-accent-rgb: 255, 0, 255;">
+              <div class="game-card-banner">🏓</div>
+              <div class="game-card-body">
+                <div class="game-card-title">PONG</div>
+                <div class="game-card-desc">Defeat the AI in a fast-paced tennis arcade. Check your physics control and speed!</div>
+                <div class="game-card-stats">
+                  <div class="game-card-stat">
+                    <span class="game-card-stat-value" id="card-stat-pong-wins" style="color:var(--accent2);">0</span>
+                    <span class="game-card-stat-label">AI Defeated</span>
+                  </div>
+                </div>
+                <div class="game-card-footer">
+                  <span class="btn-play" style="background:linear-gradient(135deg, var(--accent2), rgba(255,0,255,0.6));">PLAY NOW 🕹️</span>
+                  <span class="game-badge badge-medium">Physics</span>
+                </div>
+              </div>
+            </a>
+            <a href="games/tictactoe.html" class="game-card" style="--card-accent: var(--accent3); --card-accent-rgb: 255, 255, 0;">
+              <div class="game-card-banner">❌</div>
+              <div class="game-card-body">
+                <div class="game-card-title">TIC TAC TOE</div>
+                <div class="game-card-desc">Get three Xs or Os in a row. Play against a smart computer or local friend (PvP).</div>
+                <div class="game-card-stats">
+                  <div class="game-card-stat">
+                    <span class="game-card-stat-value" id="card-stat-ttt-wins" style="color:var(--accent3);">0</span>
+                    <span class="game-card-stat-label">Wins</span>
+                  </div>
+                </div>
+                <div class="game-card-footer">
+                  <span class="btn-play" style="background:linear-gradient(135deg, var(--accent3), rgba(255,255,0,0.6));">PLAY NOW 🕹️</span>
+                  <span class="game-badge badge-easy">Classic</span>
+                </div>
+              </div>
+            </a>
+
+            <a href="games/memory.html" class="game-card" style="--card-accent: var(--accent-green); --card-accent-rgb: 0, 255, 136;">
+              <div class="game-card-banner">🧠</div>
+              <div class="game-card-body">
+                <div class="game-card-title">MEMORY MATCH</div>
+                <div class="game-card-desc">Flip cards and match identical emojis under the ticking time limit. Test your mind!</div>
+                <div class="game-card-stats">
+                  <div class="game-card-stat">
+                    <span class="game-card-stat-value" id="card-stat-memory-best" style="color:var(--accent-green);">N/A</span>
+                    <span class="game-card-stat-label">Best Time</span>
+                  </div>
+                </div>
+                <div class="game-card-footer">
+                  <span class="btn-play" style="background:linear-gradient(135deg, var(--accent-green), rgba(0,255,136,0.6));">PLAY NOW 🕹️</span>
+                  <span class="game-badge badge-hard">Brain</span>
+                </div>
+              </div>
+            </a>
+            <a href="games/rps.html" class="game-card" style="--card-accent: var(--accent-orange); --card-accent-rgb: 255, 136, 0;">
+              <div class="game-card-banner">✂️</div>
+              <div class="game-card-body">
+                <div class="game-card-title">RPS STANDOFF</div>
+                <div class="game-card-desc">Predict computer actions in the timeless standoff. Build the highest winning streak!</div>
+                <div class="game-card-stats">
+                  <div class="game-card-stat">
+                    <span class="game-card-stat-value" id="card-stat-rps-streak" style="color:var(--accent-orange);">0</span>
+                    <span class="game-card-stat-label">Streak Record</span>
+                  </div>
+                </div>
+                <div class="game-card-footer">
+                  <span class="btn-play" style="background:linear-gradient(135deg, var(--accent-orange), rgba(255,136,0,0.6));">PLAY NOW 🕹️</span>
+                  <span class="game-badge badge-easy">Casual</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div id="settings-page-section" class="page-section">
+          <div class="section-header">
+            <span class="section-icon">⚙️</span>
+            <h2>ARCADE SETTINGS</h2>
+            <div class="section-line"></div>
+          </div>
+          
+          <div class="settings-section">
+            <h3>🎛️ Audio Options</h3>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-name">Sound Effects</div>
+                <div class="setting-desc">Generate retro sound effects  on clicks, collect, and wins.</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="settings-sound-toggle" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>🎨 Visual Cabinets Theme</h3>
+            <div class="theme-options">
+              <div class="theme-option active" data-theme="dark">
+                <div class="theme-preview preview-dark"></div>
+                <span class="theme-name">Space Cadet</span>
+              </div>
+              <div class="theme-option" data-theme="light">
+                <div class="theme-preview preview-light"></div>
+                <span class="theme-name">Chalkboard</span>
+              </div>
+              <div class="theme-option" data-theme="neon">
+                <div class="theme-preview preview-neon"></div>
+                <span class="theme-name">Retro Neon</span>
+              </div>
+              <div class="theme-option" data-theme="retro">
+                <div class="theme-preview preview-retro"></div>
+                <span class="theme-name">Cyberpunk</span>
+              </div>
+              <div class="theme-option" data-theme="matrix">
+                <div class="theme-preview preview-matrix"></div>
+                <span class="theme-name">Matrix Terminal</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>🎮 Defaults</h3>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-name">Default Difficulty</div>
+                <div class="setting-desc">Initial play speed and complexity when loading games.</div>
+              </div>
+              <select id="settings-difficulty" class="form-input form-select" style="width:140px;">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="settings-section" style="border-color:var(--accent-red);">
+            <h3 style="color:var(--accent-red);">⚠️ Danger Zone</h3>
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-name">Reset Cabinet Progress</div>
+                <div class="setting-desc">Wipes profile modifications, resets scoreboards, default difficulties, stats, and achievements.</div>
+              </div>
+              <button id="settings-reset-btn" class="btn btn-danger">RESET CABINET</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <aside class="sidebar">
+        <div class="card">
+          <div class="profile-panel">
+            <div class="profile-avatar" id="profile-avatar-display" title="Click to edit profile">👾</div>
+            <div>
+              <div class="profile-name" id="profile-name-display" title="Click to edit name">Player One</div>
+              <div class="profile-rank" id="profile-rank-display" style="margin-top:6px; text-align:center;">ROOKIE</div>
+            </div>
+            
+            <div class="profile-mini-stats">
+              <div class="profile-mini-stat">
+                <div class="profile-mini-stat-value" id="stats-favorite-game">None</div>
+                <div class="profile-mini-stat-label">Favorite</div>
+              </div>
+              <div class="profile-mini-stat" style="border-left:1px solid var(--border-color); border-right:1px solid var(--border-color);">
+                <div class="profile-mini-stat-value" id="stats-winning-streak">0</div>
+                <div class="profile-mini-stat-label">Max Streak</div>
+              </div>
+              <div class="profile-mini-stat">
+                <div class="profile-mini-stat-value" id="achievements-progress-text">0/9</div>
+                <div class="profile-mini-stat-label">Achievements</div>
+              </div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="achievements-progress-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-header" style="margin-bottom:1rem;">
+            <span class="section-icon">🎗️</span>
+            <h3 style="font-size:0.75rem; color:var(--text-primary);">ACHIEVEMENTS</h3>
+            <div class="section-line"></div>
+          </div>
+          <div class="achievements-list" id="achievements-list">
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-header" style="margin-bottom:1rem;">
+            <span class="section-icon">📊</span>
+            <h3 style="font-size:0.75rem; color:var(--text-primary);">PLAY POPULARITY</h3>
+            <div class="section-line"></div>
+          </div>
+          <div id="stats-game-chart">
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+  <div class="modal-overlay" id="profile-edit-modal">
+    <div class="modal" style="position:relative;">
+      <button class="modal-close" id="profile-close-modal">×</button>
+      <div class="modal-title">
+        <span>👤</span> Edit Arcade Identity
+      </div>
+      <form id="profile-edit-form">
+        <div class="form-group">
+          <label class="form-label" for="profile-username-input">Player Handle</label>
+          <input type="text" id="profile-username-input" class="form-input" maxlength="15" required placeholder="Player One">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="profile-emoji-select">Avatar Icon</label>
+          <select id="profile-emoji-select" class="form-input form-select">
+            <option value="👾">👾 Retro Alien</option>
+            <option value="🕹️">🕹️ Arcade stick</option>
+            <option value="🚀">🚀 Space rocket</option>
+            <option value="🐱">🐱 Nyan Cat</option>
+            <option value="🧙">🧙 Code Wizard</option>
+            <option value="🤖">🤖 Bot CPU</option>
+            <option value="🦄">🦄 Laser Unicorn</option>
+            <option value="🍕">🍕 Pizza Slice</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Avatar Glow Color</label>
+          <div class="avatar-colors" id="profile-color-picker">
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:2rem;">
+          <button type="submit" class="btn btn-primary btn-full">SAVE DETAILS</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="toast-container" id="toast-container"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/statistics.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
